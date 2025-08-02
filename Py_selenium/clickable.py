@@ -1,10 +1,11 @@
-# verify that the search box in working or not
+# verify that the dog item is clickable or not
+
 import time
 
 from selenium import webdriver
 from typing_extensions import assert_type
 
-def test_search():
+def test_clickable():
     driver = webdriver.Chrome()
     driver.get("https://jpetstore.aspectran.com/")
     elem_search_box = driver.find_element("xpath" , "/html/body/section/div[2]/div[1]/div[2]/div/form/div/input")
@@ -16,7 +17,8 @@ def test_search():
 
     driver.execute_script("window.scrollBy(0,500);")
 
-    elem_search_res = driver.find_element("xpath" , "/html/body/section/div[2]/div[2]/div[2]/table/tbody/tr[2]/td[2]")
-    assert (elem_search_res.text == "Bulldog")
+    target_link = driver.find_element("xpath" , "/html/body/section/div[2]/div[2]/div[2]/table/tbody/tr[2]/td[1]/strong/a")
+    assert (target_link.tag_name == "a")
     time.sleep(5)
+
 
